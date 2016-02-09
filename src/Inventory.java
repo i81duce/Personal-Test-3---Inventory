@@ -2,6 +2,27 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Inventory {
+
+    static Items createItem(String name, String quantity, String category) {
+        if (category.equals("Alcohol")) {
+            Alcohol newAlcohol = new Alcohol(name, quantity);
+            return newAlcohol;
+        }
+        if (category.equals("Desserts")) {
+            return new Desserts(name, quantity);
+        }
+        if (category.equals("SodaJuice")) {
+            return new SodaJuice(name, quantity);
+        }
+        if (category.equals("Food")) {
+            return new Food(name, quantity);
+        }
+        if (category.equals("Seafood")) {
+            return new Seafood(name, quantity);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         ArrayList<Items> items = new ArrayList<>();
         Scanner input = new Scanner(System.in);
@@ -15,10 +36,12 @@ public class Inventory {
                 System.out.println("Enter item name:");
                 String itemName = input.nextLine();
                 itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1);
-                System.out.println("Enter amount of " + itemName + ":");
+                System.out.printf("Enter amount of %s\n", itemName);
                 String quantity = input.nextLine();
-
-                Items newItem = new Items(itemName, quantity);
+                System.out.printf("What is the category of %s\n", itemName);
+                String newCategory = input.nextLine();
+               // Items newItem = new Items(itemName, quantity);
+                Items newItem = createItem(itemName, quantity, newCategory);
                 items.add(newItem);
             } else if (choice.equals("1")) {
                 if (items.isEmpty()) {
@@ -27,7 +50,7 @@ public class Inventory {
                     System.out.println("Select an item to modify:");
                     int i = 1;
                     for (Items tempItem : items) {
-                        System.out.println(i + ". " + tempItem.itemName + " - " + tempItem.quantity);
+                        System.out.printf("%d. %s - %s : %s", i, tempItem.itemName, tempItem.quantity, tempItem.category);
                         i++;
                     }
 
@@ -51,7 +74,7 @@ public class Inventory {
                         } else if (choice.equals("3")) {
                             break;
                         } else {
-                            break;
+
                         }
                     }
                 }
