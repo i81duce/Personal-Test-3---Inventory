@@ -23,8 +23,7 @@ public class Inventory {
             } else if (choice.equals("1")) {
                 if (items.isEmpty()) {
 
-                }
-                else {
+                } else {
                     System.out.println("Select an item to modify:");
                     int i = 1;
                     for (Items tempItem : items) {
