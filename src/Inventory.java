@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Inventory {
 
-    static Items createItem(String name, String quantity, String category) {
+    static Items createItem(String name, int quantity, String category) {
         if (category.equals("Alcohol")) {
             Alcohol newAlcohol = new Alcohol(name, quantity);
             return newAlcohol;
@@ -37,7 +37,7 @@ public class Inventory {
                 String itemName = input.nextLine();
                 itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1);
                 System.out.printf("Enter amount of %s\n", itemName);
-                String quantity = input.nextLine();
+                int quantity = Integer.valueOf(input.nextLine());
                 System.out.printf("What is the category of %s\n", itemName);
                 String newCategory = input.nextLine();
                // Items newItem = new Items(itemName, quantity);
@@ -50,7 +50,7 @@ public class Inventory {
                     System.out.println("Select an item to modify:");
                     int i = 1;
                     for (Items tempItem : items) {
-                        System.out.printf("%d. %s - %s : %s", i, tempItem.itemName, tempItem.quantity, tempItem.category);
+                        System.out.printf("%d. %s - %d : %s\n", i, tempItem.itemName, tempItem.quantity, tempItem.category);
                         i++;
                     }
 
@@ -64,7 +64,7 @@ public class Inventory {
                     while (true) {
                         if (newchoice.equals("1")) {
                             System.out.println("Enter new amount:");
-                            String newquantity = input.nextLine();
+                            int newquantity = Integer.valueOf(input.nextLine());
                             item.quantity = newquantity;
                             break;
                         } else if (newchoice.equals("2")) {
@@ -74,7 +74,7 @@ public class Inventory {
                         } else if (choice.equals("3")) {
                             break;
                         } else {
-
+                            break;
                         }
                     }
                 }
